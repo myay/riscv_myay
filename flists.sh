@@ -75,3 +75,8 @@ riscvsc_sources=(
 riscvsc_tb_path="src/riscvsc/tb/riscvsc_tb.sv"
 riscvsc_sources+=("${controller_sources[@]}")
 riscvsc_sources+=("${datapath_sources[@]}")
+
+imem_sources=(
+	'src/imem/rtl/imem.sv'
+	)
+imem_tb_path="src/imem/tb/imem_tb.sv"
