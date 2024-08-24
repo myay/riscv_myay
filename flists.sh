@@ -80,3 +80,8 @@ imem_sources=(
 	'src/imem/rtl/imem.sv'
 	)
 imem_tb_path="src/imem/tb/imem_tb.sv"
+
+dmem_sources=(
+	'src/dmem/rtl/dmem.sv'
+	)
+dmem_tb_path="src/dmem/tb/dmem_tb.sv"
