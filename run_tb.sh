@@ -82,6 +82,11 @@ case $1 in
 		tb_file_path=${dmem_tb_path}
 		tb_top_name=$(basename "${dmem_tb_path}" .sv)
 		;;
+	"riscvsc_top")
+		sources=("${riscvsc_top_sources[@]}")
+		tb_file_path=${riscvsc_top_tb_path}
+		tb_top_name=$(basename "${riscvsc_top_tb_path}" .sv)
+		;;
 	*)
 		echo "Unknown component."
 		;;

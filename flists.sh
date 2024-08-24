@@ -85,3 +85,11 @@ dmem_sources=(
 	'src/dmem/rtl/dmem.sv'
 	)
 dmem_tb_path="src/dmem/tb/dmem_tb.sv"
+
+riscvsc_top_sources=(
+	'src/riscvsc_top/rtl/riscvsc_top.sv'
+	)
+riscvsc_top_tb_path="src/riscvsc_top/tb/riscvsc_top_tb.sv"
+riscvsc_top_sources+=("${riscvsc_sources[@]}")
+riscvsc_top_sources+=("${imem_sources[@]}")
+riscvsc_top_sources+=("${dmem_sources[@]}")
