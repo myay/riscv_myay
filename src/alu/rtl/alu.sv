@@ -23,6 +23,11 @@ always_comb begin
 		// Shift left
 		3'b111: ALUResult = Src_A << Src_B;
 	endcase
+	
+	if (ALUResult == 32'b0) begin
+		Zero = 1'b1;
+	end else begin
+		Zero = 1'b0;
+	end
 end
-
 endmodule

@@ -108,5 +108,5 @@ cd obj_dir
 
 ./V${tb_top_name}
 
-gtkwave dump.vcd
+gtkwave dump.vcd 
 
