@@ -9,6 +9,8 @@ logic [31:0] rf[31:0];
 // read two ports combinationally (A1/RD1, A2/RD2)
 // write third port on rising edge of clock (A3/WD3/WE3)
 // register 0 hardwired to 0
+assign rf[5'b0] = 32'b0;
+
 always_ff @(posedge clk) begin
 	if (we3) begin
 		 rf[a3[4:0]] <= wd3;
