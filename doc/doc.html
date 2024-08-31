@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+<body>
+
+Main decoder truth table
+
+<table style="width:100%">
+  <tr>
+    <th>Instruction</th>
+    <th>Op</th> 
+    <th>RegWrite</th>
+    <th>ImmSrc</th>
+    <th>ALUSrc</th>
+    <th>MemWrite</th>
+    <th>ResultSrc</th>
+    <th>Branch</th>
+    <th>ALUOp</th>
+    <th>Jump</th>
+  </tr>
+  <tr>
+    <td>lw</td>
+    <td>0000011</td>
+    <td>1</td>
+    <td>00</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>00</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>sw</td>
+    <td>0100011</td>
+    <td>0</td>
+    <td>01</td>
+    <td>1</td>
+    <td>1</td>
+    <td>x</td>
+    <td>0</td>
+    <td>00</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>R-type</td>
+    <td>0110011</td>
+    <td>1</td>
+    <td>xx</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>10</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>beq</td>
+    <td>1100011</td>
+    <td>0</td>
+    <td>10</td>
+    <td>0</td>
+    <td>0</td>
+    <td>x</td>
+    <td>1</td>
+    <td>01</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>I-type ALU</td>
+    <td>0010011</td>
+    <td>1</td>
+    <td>00</td>
+    <td>1</td>
+    <td>0</td>
+    <td>00</td>
+    <td>0</td>
+    <td>10</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>jal</td>
+    <td>1101111</td>
+    <td>1</td>
+    <td>11</td>
+    <td>0</td>
+    <td>0</td>
+    <td>10</td>
+    <td>0</td>
+    <td>00</td>
+    <td>1</td>
+  </tr>
+</table>
+
+R-type instructions implemented: add, sub, slt, or, and, srl,  xor, sll<br>
+Immediate instructions: addi, andi, ori, xori, slti, slri (these instructions only differ in the funct3 field, which the ALU Decoder uses to determine ALUControl)
+</body>
+</html>
