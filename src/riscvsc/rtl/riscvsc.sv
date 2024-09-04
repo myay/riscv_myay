@@ -7,7 +7,8 @@ module riscvsc(input logic clk,
                input logic [31:0] ReadData);
 
 logic ALUSrc, RegWrite, Jump, Zero, PCSrc;
-logic [1:0] ResultSrc, ImmSrc;
+logic [1:0] ResultSrc;
+logic [2:0] ImmSrc;
 logic [2:0] ALUControl;
 
 controller c(
