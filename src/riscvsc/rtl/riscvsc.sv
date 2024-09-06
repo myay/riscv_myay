@@ -6,7 +6,7 @@ module riscvsc(input logic clk,
                output logic [31:0] ALUResult, WriteData,
                input logic [31:0] ReadData);
 
-logic ALUSrc, RegWrite, Jump, Zero, PCSrc;
+logic ALUSrc, RegWrite, RegWriteSrc, Jump, Zero, PCSrc;
 logic [1:0] ResultSrc;
 logic [2:0] ImmSrc;
 logic [2:0] ALUControl;
@@ -17,7 +17,8 @@ controller c(
 	.funct7b5(Instr[30]), 
 	.Zero(Zero),
 	.ResultSrc(ResultSrc), 
-	.MemWrite(MemWrite), 
+	.MemWrite(MemWrite),
+	.RegWriteSrc(RegWriteSrc), 
 	.PCSrc(PCSrc),
 	.ALUSrc(ALUSrc), 
 	.RegWrite(RegWrite), 
@@ -33,6 +34,7 @@ datapath dp(
 	.PCSrc(PCSrc),
 	.ALUSrc(ALUSrc),
 	.RegWrite(RegWrite),
+	.RegWriteSrc(RegWriteSrc),
 	.ImmSrc(ImmSrc),
 	.ALUControl(ALUControl),
 	.Zero(Zero), 
