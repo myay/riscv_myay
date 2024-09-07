@@ -5,7 +5,7 @@ logic reset_tb;
 logic [31:0] wd3_tb;
 
 initial begin
-	clk_tb = 1'b1;
+	clk_tb = 0'b1;
 	forever #10 clk_tb = ~clk_tb;
 end
 
