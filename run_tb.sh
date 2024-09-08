@@ -108,5 +108,6 @@ cd obj_dir
 
 ./V${tb_top_name}
 
-gtkwave dump.vcd 
-
+if [ "$2" = "wf" ]; then
+	gtkwave dump.vcd &
+fi

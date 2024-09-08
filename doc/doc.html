@@ -20,6 +20,7 @@ Main decoder truth table
     <th>ImmSrc</th>
     <th>ALUSrc</th>
     <th>MemWrite</th>
+    <th>RegWriteSrc</th>
     <th>ResultSrc</th>
     <th>Branch</th>
     <th>ALUOp</th>
@@ -29,10 +30,11 @@ Main decoder truth table
     <td>lw</td>
     <td>0000011</td>
     <td>1</td>
-    <td>00</td>
+    <td>000</td>
     <td>1</td>
     <td>0</td>
-    <td>1</td>
+    <td>0</td>
+    <td>01</td>
     <td>0</td>
     <td>00</td>
     <td>0</td>
@@ -41,10 +43,11 @@ Main decoder truth table
     <td>sw</td>
     <td>0100011</td>
     <td>0</td>
-    <td>01</td>
+    <td>001</td>
     <td>1</td>
     <td>1</td>
-    <td>x</td>
+    <td>0</td>
+    <td>00</td>
     <td>0</td>
     <td>00</td>
     <td>0</td>
@@ -53,10 +56,11 @@ Main decoder truth table
     <td>R-type</td>
     <td>0110011</td>
     <td>1</td>
-    <td>xx</td>
+    <td>xxx</td>
     <td>0</td>
     <td>0</td>
     <td>0</td>
+    <td>00</td>
     <td>0</td>
     <td>10</td>
     <td>0</td>
@@ -65,10 +69,11 @@ Main decoder truth table
     <td>beq</td>
     <td>1100011</td>
     <td>0</td>
-    <td>10</td>
+    <td>010</td>
     <td>0</td>
     <td>0</td>
-    <td>x</td>
+    <td>0</td>
+    <td>00</td>
     <td>1</td>
     <td>01</td>
     <td>0</td>
@@ -77,8 +82,9 @@ Main decoder truth table
     <td>I-type ALU</td>
     <td>0010011</td>
     <td>1</td>
-    <td>00</td>
+    <td>000</td>
     <td>1</td>
+    <td>0</td>
     <td>0</td>
     <td>00</td>
     <td>0</td>
@@ -89,7 +95,8 @@ Main decoder truth table
     <td>jal</td>
     <td>1101111</td>
     <td>1</td>
-    <td>11</td>
+    <td>011</td>
+    <td>0</td>
     <td>0</td>
     <td>0</td>
     <td>10</td>
@@ -97,9 +104,22 @@ Main decoder truth table
     <td>00</td>
     <td>1</td>
   </tr>
+  <tr>
+    <td>lui</td>
+    <td>0110111</td>
+    <td>1</td>
+    <td>100</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>00</td>
+    <td>0</td>
+    <td>00</td>
+    <td>0</td>
+  </tr>
 </table>
 
-R-type instructions implemented: add, sub, slt, or, and, srl,  xor, sll<br>
+R-type instructions implemented: add, sub, slt, or, and, srl, xor, sll<br>
 Immediate instructions: addi, andi, ori, xori, slti, slri (these instructions only differ in the funct3 field, which the ALU Decoder uses to determine ALUControl)
 </body>
 </html>

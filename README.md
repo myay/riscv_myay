@@ -5,9 +5,9 @@ Required:
 - GTKWave
 
 Run testbenches with
-`./run_tb.sh <component_name>`
+`./run_tb.sh <component_name> [wf]`
 e.g.
-`./run_tb.sh riscvsc_top`.
+`./run_tb.sh riscvsc_top wf`.
 
 TODOs:
 - Register reset
