@@ -8,7 +8,7 @@ module controller(input logic [6:0] op,
                   output logic PCSrc, ALUSrc,
                   output logic RegWrite, Jump,
                   output logic [2:0] ImmSrc,
-                  output logic [2:0] ALUControl);
+                  output logic [3:0] ALUControl);
 logic [1:0] ALUOp;
 logic Branch;
 

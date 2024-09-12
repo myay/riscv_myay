@@ -10,7 +10,7 @@ logic ALUSrc, RegWrite, Jump, Zero, PCSrc;
 logic [1:0] RegWriteSrc;
 logic [1:0] ResultSrc;
 logic [2:0] ImmSrc;
-logic [2:0] ALUControl;
+logic [3:0] ALUControl;
 
 controller c(
 	.op(Instr[6:0]), 
