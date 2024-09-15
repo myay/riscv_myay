@@ -6,6 +6,7 @@ module datapath(input logic clk,
 		input logic [1:0] RegWriteSrc,
                 input logic [2:0] ImmSrc,
                 input logic [3:0] ALUControl,
+		input logic ArithmLog,
                 output logic Zero,
                 output logic [31:0] PC,
                 input  logic [31:0] Instr,
@@ -87,7 +88,8 @@ mux2 #(32) srcbmux(
 alu alu(
 	.Src_A(SrcA), 
 	.Src_B(SrcB), 
-	.ALUControl(ALUControl), 
+	.ALUControl(ALUControl),
+	.ArithmLog(ArithmLog), 
 	.ALUResult(ALUResult), 
 	.Zero(Zero)
 );

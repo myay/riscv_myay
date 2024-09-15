@@ -1,6 +1,7 @@
 module alu(input logic [31:0] Src_A,
            input logic [31:0] Src_B,
            input logic [3:0] ALUControl,
+           input logic ArithmLog,		
            output logic [31:0] ALUResult,
            output logic Zero);
 
@@ -15,7 +16,13 @@ always_comb begin
 		// OR
 		4'b0011: ALUResult = Src_A | Src_B;
 		// Shift right
-		4'b0100: ALUResult = Src_A >>> Src_B;
+		4'b0100: if (ArithmLog) begin
+				// arithmetic right shift 
+				ALUResult = Src_A >>> Src_B[4:0];
+			end else begin
+				// logic right shift
+				ALUResult = Src_A >> Src_B[4:0];
+			end
 		// Set less than (signed)
 		4'b0101: if ((Src_A[31] == 1'b0) && (Src_B[31] == 1'b0)) begin 
 				// both values are positive
@@ -33,7 +40,7 @@ always_comb begin
 		// XOR
 		4'b0110: ALUResult = Src_A ^ Src_B;
 		// Shift left
-		4'b0111: ALUResult = Src_A << Src_B;
+		4'b0111: ALUResult = Src_A << Src_B[4:0];
 		// Set less than unsigned
 		4'b1000: ALUResult = Src_A < Src_B ? 32'b1 : 32'b0;
 		// default

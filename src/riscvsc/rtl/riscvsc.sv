@@ -11,6 +11,9 @@ logic [1:0] RegWriteSrc;
 logic [1:0] ResultSrc;
 logic [2:0] ImmSrc;
 logic [3:0] ALUControl;
+logic ArithmLog;
+
+assign ArithmLog = Instr[30];
 
 controller c(
 	.op(Instr[6:0]), 
@@ -38,6 +41,7 @@ datapath dp(
 	.RegWriteSrc(RegWriteSrc),
 	.ImmSrc(ImmSrc),
 	.ALUControl(ALUControl),
+	.ArithmLog(ArithmLog),
 	.Zero(Zero), 
 	.PC(PC), 
 	.Instr(Instr),
