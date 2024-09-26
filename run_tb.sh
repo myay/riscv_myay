@@ -87,6 +87,11 @@ case $1 in
 		tb_file_path=${riscvsc_top_tb_path}
 		tb_top_name=$(basename "${riscvsc_top_tb_path}" .sv)
 		;;
+	"csr")
+		sources=("${csr_sources[@]}")
+		tb_file_path=${csr_tb_path}
+		tb_top_name=$(basename "${csr_tb_path}" .sv)
+		;;
 	*)
 		echo "Unknown component."
 		;;

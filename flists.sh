@@ -35,6 +35,11 @@ regfile_sources=(
 	)
 regfile_tb_path="src/regfile/tb/regfile_tb.sv"
 
+csr_sources=(
+	'src/csr/rtl/csr.sv'
+	)
+csr_tb_path="src/csr/tb/csr_tb.sv"
+
 alu_sources=(
 	'src/alu/rtl/alu.sv'
 	)
@@ -48,6 +53,7 @@ datapath_sources+=("${extend_sources[@]}")
 datapath_sources+=("${flopr_sources[@]}")
 datapath_sources+=("${mux2_sources[@]}")
 datapath_sources+=("${regfile_sources[@]}")
+datapath_sources+=("${csr_sources[@]}")
 datapath_sources+=("${alu_sources[@]}")
 datapath_sources+=("${mux3_sources[@]}")
 datapath_tb_path="src/datapath/tb/datapath_tb.sv"
