@@ -1,6 +1,6 @@
 module csr(input logic clk,
-	   input logic [3:0] CSRControl,
-           input logic [31:0] instr,
+	   input logic we,
+           input logic [19:0] instr_31_12,
            input logic [31:0] wd,
            output logic [31:0] rd);
 
@@ -10,28 +10,21 @@ module csr(input logic clk,
 logic [31:0] CSR_rf[4095:0];
 logic [11:0] csr_address;
 logic [31:0] zimm;
-logic we;
-logic [2:0] csr_ctrl_l3b;
-logic [4:0] instr_rd;
+logic [2:0] func3;
 logic [31:0] csr_val;
 
 // helper values
-assign csr_address = instr[31:20];
-assign we = CSRControl[3];
-assign csr_ctrl_l3b = CSRControl[2:0];
-assign zimm = {27'b0, instr[19:15]};
+assign csr_address = instr_31_12[19:8];
+assign zimm = {27'b0, instr_31_12[7:3]};
+assign func3 = instr_31_12[2:0];
 assign csr_val = CSR_rf[csr_address];
-
-// TODO?
-// if instr_rd == 5'b0 then do not read and don't cause any side effects from read
-assign instr_rd = instr[11:7];
 
 // output
 assign rd = csr_val; 
 
 always_ff @(posedge clk) begin
 	if (we) begin
-		case(csr_ctrl_l3b)
+		case(func3)
 			3'b001: // csrrw
 				CSR_rf[csr_address] <= wd;
 			3'b010: // csrrs
