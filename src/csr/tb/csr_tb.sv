@@ -19,13 +19,32 @@ initial begin
 	#20;
 	// csrrw
 	// instruction
-	//instr_tb = 32'b000000000001 00001 001 00001 11100 11;
+	// instr_tb = 32'b000000000001 00001 001 00001 11100 11;
 	instr_tb = 32'b00000000000100001001000011110011;
 	wd_tb = 32'b11;
 	we_tb = 1'b1;		
 	#20;
+	
+	// csrrs
+	// instr_tb = 32' 000000000001 00001 010 00001 11100 11;
+	instr_tb = 32'b00000000000100001010000011110011;		
+	wd_tb = 32'hFFFFFFFF;
+	we_tb = 1'b1;		
+	#20;
 
-	// csrrs		
+	// csrrc
+	// instr_tb = 32' 000000000001 00001 011 00001 11100 11;
+	instr_tb = 32'b00000000000100001011000011110011;		
+	wd_tb = 32'hFFFFFFFF;
+	we_tb = 1'b1;		
+	#20;
+
+	// csrrwi
+
+	// csrrsi
+
+	// csrrci
+	
 	$finish;
 end
 
