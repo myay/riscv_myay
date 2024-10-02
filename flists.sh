@@ -30,6 +30,11 @@ mux3_sources=(
 	)
 mux3_tb_path="src/mux3/tb/mux3_tb.sv"
 
+mux4_sources=(
+	'src/mux4/rtl/mux4.sv'
+	)
+mux4_tb_path="src/mux4/tb/mux4_tb.sv"
+
 regfile_sources=(
 	'src/regfile/rtl/regfile.sv'
 	)
@@ -56,6 +61,7 @@ datapath_sources+=("${regfile_sources[@]}")
 datapath_sources+=("${csr_sources[@]}")
 datapath_sources+=("${alu_sources[@]}")
 datapath_sources+=("${mux3_sources[@]}")
+datapath_sources+=("${mux4_sources[@]}")
 datapath_tb_path="src/datapath/tb/datapath_tb.sv"
 
 aludec_sources=(

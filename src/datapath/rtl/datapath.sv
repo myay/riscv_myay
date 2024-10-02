@@ -4,6 +4,7 @@ module datapath(input logic clk,
                 input logic PCSrc, ALUSrc,
                 input logic RegWrite,
 		input logic [1:0] RegWriteSrc,
+		input logic CSRWrite,
                 input logic [2:0] ImmSrc,
                 input logic [3:0] ALUControl,
 		input logic ArithmLog,
@@ -19,6 +20,7 @@ logic [31:0] SrcA, SrcB;
 logic [31:0] Result;
 logic [31:0] WriteRegData;
 logic [31:0] PCPlusImm;
+logic [31:0] CSRSrc;
 
 // next PC logic
 flopr #(32) pcreg(
@@ -93,11 +95,22 @@ alu alu(
 	.ALUResult(ALUResult), 
 	.Zero(Zero)
 );
-mux3 #(32) resultmux(
+mux4 #(32) resultmux(
 	.d0(ALUResult), 
 	.d1(ReadData), 
-	.d2(PCPlus4), 
+	.d2(PCPlus4),
+	.d3(CSRSrc), 
 	.s(ResultSrc), 
 	.y(Result)
 );
+
+// csr
+csr csr_reg(
+	.clk(clk),
+	.we(CSRWrite),
+	.instr_31_12(Instr[31:12]),
+	.wd(SrcA),
+	.rd(CSRSrc)	
+);
+
 endmodule

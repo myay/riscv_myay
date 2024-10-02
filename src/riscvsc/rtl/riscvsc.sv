@@ -12,6 +12,7 @@ logic [1:0] ResultSrc;
 logic [2:0] ImmSrc;
 logic [3:0] ALUControl;
 logic ArithmLog;
+logic CSRWrite;
 
 assign ArithmLog = Instr[30];
 
@@ -22,6 +23,7 @@ controller c(
 	.Zero(Zero),
 	.ResultSrc(ResultSrc), 
 	.MemWrite(MemWrite),
+	.CSRWrite(CSRWrite),
 	.RegWriteSrc(RegWriteSrc), 
 	.PCSrc(PCSrc),
 	.ALUSrc(ALUSrc), 
@@ -39,6 +41,7 @@ datapath dp(
 	.ALUSrc(ALUSrc),
 	.RegWrite(RegWrite),
 	.RegWriteSrc(RegWriteSrc),
+	.CSRWrite(CSRWrite),
 	.ImmSrc(ImmSrc),
 	.ALUControl(ALUControl),
 	.ArithmLog(ArithmLog),

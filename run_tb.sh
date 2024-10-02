@@ -37,6 +37,11 @@ case $1 in
 		tb_file_path=${mux3_tb_path}
 		tb_top_name=$(basename "${mux3_tb_path}" .sv)
 		;;
+	"mux4")
+		sources=("${mux4_sources[@]}")
+		tb_file_path=${mux4_tb_path}
+		tb_top_name=$(basename "${mux4_tb_path}" .sv)
+		;;
 	"regfile")
 		sources=("${regfile_sources[@]}")
 		tb_file_path=${regfile_tb_path}
