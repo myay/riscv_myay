@@ -98,6 +98,11 @@ dmem_sources=(
 	)
 dmem_tb_path="src/dmem/tb/dmem_tb.sv"
 
+dmem_vam_sources=(
+	'src/dmem_vam/rtl/dmem_vam.sv'
+	)
+dmem_vam_tb_path="src/dmem_vam/tb/dmem_vam_tb.sv"
+
 riscvsc_top_sources=(
 	'src/riscvsc_top/rtl/riscvsc_top.sv'
 	)
@@ -105,3 +110,4 @@ riscvsc_top_tb_path="src/riscvsc_top/tb/riscvsc_top_tb.sv"
 riscvsc_top_sources+=("${riscvsc_sources[@]}")
 riscvsc_top_sources+=("${imem_sources[@]}")
 riscvsc_top_sources+=("${dmem_sources[@]}")
+riscvsc_top_sources+=("${dmem_vam_sources[@]}")
