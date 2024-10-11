@@ -55,8 +55,8 @@ assign rd = (RAM[a[7:2]] & bitmask) >> shift_amount;
 always_ff @(posedge clk) begin
 	if (we) begin
 		case(accessmode)
-			2'b00: RAM[a[7:2]][(8*a[1:0])+:8] <= (wd[(8*a[1:0])+:8]);
-			2'b01: RAM[a[7:2]][(16*a[1])+:16] <= (wd[(16*a[1])+:16]);
+			2'b00: RAM[a[7:2]][(8*a[1:0])+:8] <= (wd[7:0]);
+			2'b01: RAM[a[7:2]][(16*a[1])+:16] <= (wd[15:0]);
 			2'b10: RAM[a[7:2]] <= wd;
 			default: ;
 		endcase

@@ -10,6 +10,11 @@ extend_sources=(
 	)
 extend_tb_path="src/extend/tb/extend_tb.sv"
 
+extend_dmem_sources=(
+	'src/extend_dmem/rtl/extend_dmem.sv'
+	)
+extend_dmem_tb_path="src/extend_dmem/tb/extend_dmem_tb.sv"
+
 flopr_sources=(
 	'src/flopr/rtl/flopr.sv'
 	)
@@ -62,6 +67,7 @@ datapath_sources+=("${csr_sources[@]}")
 datapath_sources+=("${alu_sources[@]}")
 datapath_sources+=("${mux3_sources[@]}")
 datapath_sources+=("${mux4_sources[@]}")
+datapath_sources+=("${extend_dmem_sources[@]}")
 datapath_tb_path="src/datapath/tb/datapath_tb.sv"
 
 aludec_sources=(
