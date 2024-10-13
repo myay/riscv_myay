@@ -1,10 +1,14 @@
-module riscvsc(input logic clk,
-               input logic reset,
-               output logic [31:0] PC,
-               input logic [31:0] Instr,
-               output logic MemWrite,
-               output logic [31:0] ALUResult, WriteData,
-               input logic [31:0] ReadData);
+module riscvsc(
+	input logic clk,
+	input logic reset,
+	output logic [31:0] PC,
+	input logic [31:0] Instr,
+	output logic MemWrite,
+	output logic [31:0] ALUResult,
+	output logic [31:0] WriteData,
+	output logic [1:0] AccessMode,
+        input logic [31:0] ReadData
+);
 
 logic ALUSrc, RegWrite, Jump, Zero, PCSrc;
 logic [1:0] RegWriteSrc;
@@ -30,7 +34,8 @@ controller c(
 	.RegWrite(RegWrite), 
 	.Jump(Jump),
 	.ImmSrc(ImmSrc), 
-	.ALUControl(ALUControl)
+	.ALUControl(ALUControl),
+	.AccessMode(AccessMode)
 );
 
 datapath dp(

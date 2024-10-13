@@ -1,29 +1,42 @@
-module maindec(input logic [6:0] op,
-               output logic [1:0] ResultSrc,
-               output logic MemWrite,
-               output logic CSRWrite,
-	       output logic [1:0] RegWriteSrc,
-               output logic Branch, ALUSrc,
-               output logic RegWrite, Jump,
-               output logic [2:0] ImmSrc,
-               output logic [1:0] ALUOp);
+module maindec(
+	input logic [6:0] op,
+	input logic [2:0] funct3,
+	output logic [1:0] ResultSrc,
+	output logic MemWrite,
+	output logic CSRWrite,
+	output logic [1:0] RegWriteSrc,
+	output logic Branch, ALUSrc,
+	output logic RegWrite, Jump,
+	output logic [2:0] ImmSrc,
+	output logic [1:0] ALUOp,
+	output logic [1:0] AccessMode
+);
 
-logic [14:0] controls;
-assign {RegWrite, ImmSrc, ALUSrc, MemWrite, CSRWrite, RegWriteSrc,
+logic [16:0] controls;
+assign {RegWrite, ImmSrc, ALUSrc, MemWrite, CSRWrite, AccessMode, RegWriteSrc,
         ResultSrc, Branch, ALUOp, Jump} = controls;
 
 always_comb
 	case(op)
-		// RegWrite_ImmSrc_ALUSrc_MemWrite_CSRWrite_RegWriteSrc_ResultSrc_Branch_ALUOp_Jump
-		7'b0000011: controls = 15'b1_000_1_0_0_00_01_0_00_0; // lw
-		7'b0100011: controls = 15'b0_001_1_1_0_00_00_0_00_0; // sw
-		7'b0110011: controls = 15'b1_xxx_0_0_0_00_00_0_10_0; // R–type
-		7'b1100011: controls = 15'b0_010_0_0_0_00_00_1_01_0; // beq
-		7'b0010011: controls = 15'b1_000_1_0_0_00_00_0_10_0; // I–type ALU
-		7'b1101111: controls = 15'b1_011_0_0_0_00_10_0_00_1; // jal
-		7'b0110111: controls = 15'b1_100_0_0_0_01_00_0_00_0; // lui
-		7'b0010111: controls = 15'b1_100_0_0_0_10_00_0_00_0; // aupic
-		7'b1110011: controls = 15'b1_100_0_0_1_11_00_0_00_0; // csr
-	        default: controls = 15'bx_xxx_x_x_xx_xx_x_xx_x; // ??? 
+		// RegWrite_ImmSrc_ALUSrc_MemWrite_CSRWrite_AccessMode_RegWriteSrc_ResultSrc_Branch_ALUOp_Jump
+		7'b0000011: // lw 
+			begin
+				case(funct3)
+					3'b000: controls = 17'b1_000_1_0_0_00_00_01_0_00_0; // byte
+					3'b001: controls = 17'b1_000_1_0_0_01_00_01_0_00_0; // hex
+					3'b010: controls = 17'b1_000_1_0_0_10_00_01_0_00_0; // 32 bit
+					default; 
+				endcase	
+			end
+		7'b0100011: controls = 17'b0_001_1_1_0_00_00_00_0_00_0; // sw
+		7'b0110011: controls = 17'b1_xxx_0_0_0_00_00_00_0_10_0; // R–type
+		7'b1100011: controls = 17'b0_010_0_0_0_00_00_00_1_01_0; // beq
+		7'b0010011: controls = 17'b1_000_1_0_0_00_00_00_0_10_0; // I–type ALU
+		7'b1101111: controls = 17'b1_011_0_0_0_00_00_10_0_00_1; // jal
+		7'b0110111: controls = 17'b1_100_0_0_0_00_01_00_0_00_0; // lui
+		7'b0010111: controls = 17'b1_100_0_0_0_00_10_00_0_00_0; // aupic
+		7'b1110011: controls = 17'b1_100_0_0_1_00_11_00_0_00_0; // csr
+		
+	        default: controls = 17'bx_xxx_x_x_xx_xx_xx_x_xx_x; // ??? 
 	endcase
 endmodule
