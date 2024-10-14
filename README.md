@@ -13,4 +13,4 @@ TODOs:
 - Register reset
 - RV32I instruction set
 
-![riscv-cpu drawio](https://github.com/user-attachments/assets/8dd22a48-b0f4-4422-ab35-7d8dbc0dfc62)
+![riscv-cpu drawio](https://github.com/user-attachments/assets/3a89731b-e816-4a08-85da-9c03e07e7def)
