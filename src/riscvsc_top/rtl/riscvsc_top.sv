@@ -4,10 +4,11 @@ module riscvsc_top(input logic clk,
            output logic [31:0] DataAdr,
            output logic MemWrite);
 
-logic [31:0] PC, Instr, ReadData;
+logic [31:0] PC, Instr, ReadData, ReadData_ext;
 logic [1:0] AccessMode;
+logic DataExtendMode;
 // instantiate processor and memories
-	riscvsc rvsc(
+riscvsc rvsc(
 	.clk(clk), 
 	.reset(reset), 
 	.PC(PC), 
@@ -16,20 +17,29 @@ logic [1:0] AccessMode;
 	.ALUResult(DataAdr),  
 	.WriteData(WriteData),
 	.AccessMode(AccessMode),
-	.ReadData(ReadData)
-	);
+	.ReadData(ReadData_ext),
+	.DataExtendMode(DataExtendMode)
+);
 
-	imem imem(
+imem i_imem(
 	.a(PC), 
 	.rd(Instr)
-	);
-   
-	dmem_vam dmem_vam(
+);
+
+dmem_vam i_dmem_vam(
 	.clk(clk),
 	.accessmode(AccessMode),
 	.we(MemWrite), 
 	.a(DataAdr), 
 	.wd(WriteData), 
 	.rd(ReadData)
-	);
- endmodule
+);
+
+extend_dmem i_extend_dmem(
+	.extendmode(DataExtendMode),
+	.accessmode(AccessMode),
+	.in_data(ReadData),
+	.out_data(ReadData_ext)
+);
+	
+endmodule

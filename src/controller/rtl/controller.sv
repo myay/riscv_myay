@@ -11,7 +11,8 @@ module controller(
 	output logic RegWrite, Jump,
 	output logic [2:0] ImmSrc,
 	output logic [3:0] ALUControl,
-	output logic [1:0] AccessMode
+	output logic [1:0] AccessMode,
+	output logic DataExtendMode
 );
 
 logic [1:0] ALUOp;
@@ -30,7 +31,8 @@ maindec md(
 	.Jump(Jump), 
 	.ImmSrc(ImmSrc), 
 	.ALUOp(ALUOp),
-	.AccessMode(AccessMode)
+	.AccessMode(AccessMode),
+	.DataExtendMode(DataExtendMode)
 );
 
 aludec ad(

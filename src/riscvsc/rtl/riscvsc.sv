@@ -7,7 +7,8 @@ module riscvsc(
 	output logic [31:0] ALUResult,
 	output logic [31:0] WriteData,
 	output logic [1:0] AccessMode,
-        input logic [31:0] ReadData
+        input logic [31:0] ReadData,
+	output logic DataExtendMode
 );
 
 logic ALUSrc, RegWrite, Jump, Zero, PCSrc;
@@ -35,7 +36,8 @@ controller c(
 	.Jump(Jump),
 	.ImmSrc(ImmSrc), 
 	.ALUControl(ALUControl),
-	.AccessMode(AccessMode)
+	.AccessMode(AccessMode),
+	.DataExtendMode(DataExtendMode)
 );
 
 datapath dp(
