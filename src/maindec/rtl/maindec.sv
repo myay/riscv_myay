@@ -26,8 +26,8 @@ always_comb
 					3'b000: controls = 18'b1_000_1_0_0_00_1_00_01_0_00_0; // byte - lb
 					3'b001: controls = 18'b1_000_1_0_0_01_1_00_01_0_00_0; // hex - lh
 					3'b010: controls = 18'b1_000_1_0_0_10_1_00_01_0_00_0; // 32 bit - lw
-					3'b100: controls = 18'b1_000_1_0_0_10_0_00_01_0_00_0; // byte unsigned - lbu
-					3'b101: controls = 18'b1_000_1_0_0_10_0_00_01_0_00_0; // hex unsigned -lhu 
+					3'b100: controls = 18'b1_000_1_0_0_00_0_00_01_0_00_0; // byte unsigned - lbu
+					3'b101: controls = 18'b1_000_1_0_0_01_0_00_01_0_00_0; // hex unsigned -lhu 
 					default; 
 				endcase	
 			end

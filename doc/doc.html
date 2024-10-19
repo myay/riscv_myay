@@ -21,6 +21,8 @@ Main decoder truth table
     <th>ALUSrc</th>
     <th>MemWrite</th>
     <th>CSRWrite</th>
+    <th>AccessMode</th>
+    <th>DataExtendMode</th>
     <th>RegWriteSrc</th>
     <th>ResultSrc</th>
     <th>Branch</th>
@@ -35,6 +37,8 @@ Main decoder truth table
     <td>1</td>
     <td>0</td>
     <td>0</td>
+    <td>01</td>
+    <td>1</td>	
     <td>00</td>
     <td>01</td>
     <td>0</td>
@@ -48,6 +52,8 @@ Main decoder truth table
     <td>001</td>
     <td>1</td>
     <td>1</td>
+    <td>0</td>
+    <td>10</td>
     <td>0</td>
     <td>00</td>
     <td>00</td>
@@ -64,6 +70,8 @@ Main decoder truth table
     <td>0</td>
     <td>0</td>
     <td>00</td>
+    <td>0</td>
+    <td>00</td>
     <td>00</td>
     <td>0</td>
     <td>10</td>
@@ -76,6 +84,8 @@ Main decoder truth table
     <td>010</td>
     <td>0</td>
     <td>0</td>
+    <td>0</td>
+    <td>00</td>
     <td>0</td>
     <td>00</td>
     <td>00</td>
@@ -92,6 +102,8 @@ Main decoder truth table
     <td>0</td>
     <td>0</td>
     <td>00</td>
+    <td>0</td>
+    <td>00</td>
     <td>00</td>
     <td>0</td>
     <td>10</td>
@@ -104,6 +116,8 @@ Main decoder truth table
     <td>011</td>
     <td>0</td>
     <td>0</td>
+    <td>0</td>
+    <td>00</td>
     <td>0</td>
     <td>00</td>
     <td>10</td>
@@ -119,6 +133,8 @@ Main decoder truth table
     <td>0</td>
     <td>0</td>
     <td>0</td>
+    <td>00</td>
+    <td>0</td>
     <td>01</td>
     <td>00</td>
     <td>0</td>
@@ -132,6 +148,8 @@ Main decoder truth table
     <td>100</td>
     <td>0</td>
     <td>0</td>
+    <td>0</td>
+    <td>00</td>
     <td>0</td>
     <td>10</td>
     <td>00</td>
@@ -147,6 +165,8 @@ Main decoder truth table
     <td>0</td>
     <td>0</td>
     <td>1</td>
+    <td>00</td>
+    <td>0</td>
     <td>11</td>
     <td>00</td>
     <td>0</td>
@@ -157,6 +177,8 @@ Main decoder truth table
 
 R-type instructions implemented: add, sub, slt, sltu, or, and, sltu, srl, xor, sll, sra <br>
 Immediate ALU instructions: addi, andi, ori, xori, slli, slti, sltiu, slri, srli, srai (these instructions only differ in the funct3 field, which the ALU Decoder uses to determine ALUControl) <br>
-CSR instructions: csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci
+CSR instructions: csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci <br>
+Load instructions: lb, lh, lw, lbu, lhu (these differ in AccessMode -00, 01, 10, 00, 01- and DataExtendMode -1, 1, 1, 0, 0- respectively) <br>
+Store instructions: sb, sh, sw (these differ in AccessMode -00, 01, 10- respectively)
 </body>
 </html>
